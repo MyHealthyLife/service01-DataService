@@ -37,5 +37,9 @@
         <dependency org="net.sf.dozer" name="dozer" rev="5.5.1"/>
         <dependency org="joda-time" name="joda-time" rev="2.4"/>
         <dependency org="org.slf4j" name="slf4j-nop" rev="1.7.7"/>
+        
+        <!-- https://mvnrepository.com/artifact/org.postgresql/postgresql -->
+		<dependency org="org.postgresql" name="postgresql" rev="9.4.1212.jre7"/>
+        
     </dependencies>
 </ivy-module>
