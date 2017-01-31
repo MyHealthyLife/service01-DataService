@@ -1,6 +1,7 @@
-package myhealthylife.dataservice.model;
+package myhealthylife.dataservice.model.entities;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,6 +11,8 @@ import javax.persistence.Id;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.TableGenerator;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @Entity
@@ -23,4 +26,14 @@ public class Person implements Serializable{
 	@TableGenerator(name="sqlite_person", table="sqlite_sequence",pkColumnName="name", valueColumnName="seq", pkColumnValue="Person")
     @Column(name="idPerson") // maps the following attribute to a column
     private int idPerson;
+	
+	@Column(name="name")
+	private String firstname;
+	
+	@Column(name="lastname")
+	private String lastname;
+	
+	@Temporal(TemporalType.DATE) // defines the precision of the date attribute
+    @Column(name="birthdate")
+	private Date birthdate;
 }
