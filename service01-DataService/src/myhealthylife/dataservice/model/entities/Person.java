@@ -4,13 +4,16 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EntityManager;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.TableGenerator;
 import javax.persistence.Temporal;
@@ -40,6 +43,18 @@ public class Person implements Serializable{
 	@Temporal(TemporalType.DATE) // defines the precision of the date attribute
     @Column(name="birthdate")
 	private Date birthdate;
+	
+	@Column(name="username")
+	private String username;
+	
+	@Column(name="password")
+	private String password;
+	
+	@Column(name="telegram_username")
+	private String telegramUsername;
+	
+	@OneToOne(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+	private HealthProfile healthProfile;
 
 	public int getIdPerson() {
 		return idPerson;
@@ -80,4 +95,28 @@ public class Person implements Serializable{
         DataServiceDao.instance.closeConnections(em);
         return list;
     }
+
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public String getTelegramUsername() {
+		return telegramUsername;
+	}
+
+	public void setTelegramUsername(String telegramUsername) {
+		this.telegramUsername = telegramUsername;
+	}
 }
