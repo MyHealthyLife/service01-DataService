@@ -16,6 +16,7 @@ import myhealthylife.dataservice.soap.DataServiceImpl;
 public class TestClient {
 	  public static void main(String[] args) throws Exception {
 	        URL url = new URL("http://127.0.1.1:6902/ws/data_service?wsdl");
+		  	//URL url = new URL("https://service01-dataservice.herokuapp.com/ws/data_service?wsdl");
 	        //1st argument service URI, refer to wsdl document above
 	        //2nd argument is service name, refer to wsdl document above
 	        QName qname = new QName("http://soap.dataservice.myhealthylife/", "DataService");
