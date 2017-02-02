@@ -32,7 +32,7 @@ public class Person implements Serializable{
     @GeneratedValue(strategy=GenerationType.AUTO) 
 	@TableGenerator(name="sqlite_person", table="sqlite_sequence",pkColumnName="name", valueColumnName="seq", pkColumnValue="Person")
     @Column(name="idPerson") // maps the following attribute to a column
-    private int idPerson;
+    private long idPerson;
 	
 	@Column(name="name")
 	private String firstname;
@@ -56,11 +56,11 @@ public class Person implements Serializable{
 	@OneToOne(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
 	private HealthProfile healthProfile;
 
-	public int getIdPerson() {
+	public long getIdPerson() {
 		return idPerson;
 	}
 
-	public void setIdPerson(int idPerson) {
+	public void setIdPerson(long idPerson) {
 		this.idPerson = idPerson;
 	}
 
