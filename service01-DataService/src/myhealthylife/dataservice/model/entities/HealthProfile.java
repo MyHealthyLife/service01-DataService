@@ -19,11 +19,16 @@ import myhealthylife.dataservice.model.dao.DataServiceDao;
 @XmlRootElement(name="healthProfile")
 public class HealthProfile implements Serializable {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	@Id // defines this attributed as the one that identifies the entity
     @GeneratedValue(strategy=GenerationType.AUTO) 
     @Column(name="idHealtprofile") // maps the following attribute to a column
 	@XmlTransient
-    private int idHealthProfile;
+    private long idHealthProfile;
 	
 	@OneToOne(mappedBy="healthProfile", cascade=CascadeType.ALL, fetch=FetchType.EAGER)
 	@XmlTransient
@@ -42,11 +47,11 @@ public class HealthProfile implements Serializable {
 	//private List<MeasureType> measureType;
 
 	@XmlTransient
-	public int getIdHealthProfile() {
+	public long getIdHealthProfile() {
 		return idHealthProfile;
 	}
 
-	public void setIdHealthProfile(int idHealthProfile) {
+	public void setIdHealthProfile(long idHealthProfile) {
 		this.idHealthProfile = idHealthProfile;
 	}
 

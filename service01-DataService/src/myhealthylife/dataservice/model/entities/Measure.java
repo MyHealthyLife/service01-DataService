@@ -17,7 +17,7 @@ public class Measure implements Comparable<Measure>{
 	@Id // defines this attributed as the one that identifies the entity
     @GeneratedValue(strategy=GenerationType.AUTO) 
     @Column(name="mid") // maps the following attribute to a column
-    private int mid;
+    private long mid;
 	
 	@Column(name="value")
 	private double measureValue;
@@ -35,11 +35,11 @@ public class Measure implements Comparable<Measure>{
 	@XmlTransient
 	private HealthProfile  healthProfile;
 
-	public int getMid() {
+	public long getMid() {
 		return mid;
 	}
 
-	public void setMid(int mid) {
+	public void setMid(long mid) {
 		this.mid = mid;
 	}
 

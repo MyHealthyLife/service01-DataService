@@ -18,5 +18,40 @@ public interface DataService {
 	@WebMethod(operationName="listPeople")
 	@WebResult(name="people")
 	public People getPeople();
+	
+	@WebMethod(operationName="getPerson")
+	@WebResult(name="person")
+	/**
+	 * get a person by id
+	 * @param id
+	 * @return
+	 */
+	public Person getPerson(long id);
 
+	@WebMethod(operationName="register")
+	@WebResult(name="person")
+	/**
+	 * register new person into the system
+	 * @param p person to save
+	 * @return saved person
+	 */
+	public Person register(Person p);
+	
+	@WebMethod(operationName="updatePerson")
+	@WebResult(name="person")
+	/**
+	 * update an already existing peron
+	 * @param p
+	 * @return
+	 */
+	public Person updatePerson(Person p);
+	
+	@WebMethod(operationName="deletePerson")
+	@WebResult(name="idPerson")
+	/**
+	 * delete a person from the database
+	 * @param id
+	 * @return
+	 */
+	public long deletePerson(long id);
 }

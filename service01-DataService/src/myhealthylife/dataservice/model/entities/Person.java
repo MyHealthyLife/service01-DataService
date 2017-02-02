@@ -8,6 +8,7 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -28,9 +29,13 @@ import myhealthylife.dataservice.model.dao.DataServiceDao;
 @XmlRootElement(name="person")
 public class Person implements Serializable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	@Id // defines this attributed as the one that identifies the entity
     @GeneratedValue(strategy=GenerationType.AUTO) 
-	@TableGenerator(name="sqlite_person", table="sqlite_sequence",pkColumnName="name", valueColumnName="seq", pkColumnValue="Person")
     @Column(name="idPerson") // maps the following attribute to a column
     private long idPerson;
 	
@@ -95,6 +100,48 @@ public class Person implements Serializable{
         DataServiceDao.instance.closeConnections(em);
         return list;
     }
+	
+	public static Person getPersonById(long personId) {
+        EntityManager em = DataServiceDao.instance.createEntityManager();
+        Person p = em.find(Person.class, personId);
+        DataServiceDao.instance.closeConnections(em);
+        return p;
+    }
+	
+	public static Person savePerson(Person p) {
+        EntityManager em = DataServiceDao.instance.createEntityManager();
+        EntityTransaction tx = em.getTransaction();
+        tx.begin();
+        em.persist(p);
+        tx.commit();
+        DataServiceDao.instance.closeConnections(em);
+        return p;
+    } 
+
+    public static Person updatePerson(Person p) {
+        EntityManager em = DataServiceDao.instance.createEntityManager(); 
+        EntityTransaction tx = em.getTransaction();
+        tx.begin();
+        p=em.merge(p);
+        tx.commit();
+        DataServiceDao.instance.closeConnections(em);
+        return p;
+    }
+    
+    public static void removePerson(long id) {
+    	Person p=getPersonById(id);
+    	
+    	if(p==null)
+    		return;
+    	
+        EntityManager em = DataServiceDao.instance.createEntityManager();
+        EntityTransaction tx = em.getTransaction();
+        tx.begin();
+        p=em.merge(p);
+        em.remove(p);
+        tx.commit();
+        DataServiceDao.instance.closeConnections(em);
+    }
 
 	public String getUsername() {
 		return username;
@@ -118,5 +165,13 @@ public class Person implements Serializable{
 
 	public void setTelegramUsername(String telegramUsername) {
 		this.telegramUsername = telegramUsername;
+	}
+
+	public HealthProfile getHealthProfile() {
+		return healthProfile;
+	}
+
+	public void setHealthProfile(HealthProfile healthProfile) {
+		this.healthProfile = healthProfile;
 	}
 }
