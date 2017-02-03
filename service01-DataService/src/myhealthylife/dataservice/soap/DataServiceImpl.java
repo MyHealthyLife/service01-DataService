@@ -4,6 +4,7 @@ import javax.jws.WebService;
 
 import myhealthylife.dataservice.model.CurrentHealth;
 import myhealthylife.dataservice.model.People;
+import myhealthylife.dataservice.model.entities.HealthProfile;
 import myhealthylife.dataservice.model.entities.Measure;
 import myhealthylife.dataservice.model.entities.Person;
 
@@ -53,15 +54,35 @@ public class DataServiceImpl implements DataService{
 	}
 
 	@Override
-	public CurrentHealth getCurrentHealth(long id) {
-		// TODO Auto-generated method stub
-		return null;
+	public CurrentHealth getCurrentHealth(long idPerson) {
+		Person p=Person.getPersonById(idPerson);
+		
+		if(p==null)
+			return null;
+		
+		if(p.getHealthProfile()==null)
+			return null;
+		
+		return p.getHealthProfile().getCurrentHealth();
 	}
 
 	@Override
 	public Measure saveMeasure(long idPerson, Measure measure) {
-		// TODO Auto-generated method stub
-		return null;
+		Person p=Person.getPersonById(idPerson);
+		
+		if(p==null)
+			return null;
+		
+		if(p.getHealthProfile()==null){
+			p.setHealthProfile(new HealthProfile());
+		}
+		
+		p.getHealthProfile().addMeasure(measure);
+		
+		p=Person.updatePerson(p);
+		
+		//TODO cambiare con qualcosa di più corretto
+		return p.getHealthProfile().getMeasureList().get(p.getHealthProfile().getMeasureList().size()-1);
 	}
 
 	@Override

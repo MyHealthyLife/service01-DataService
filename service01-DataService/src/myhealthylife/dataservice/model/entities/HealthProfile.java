@@ -13,6 +13,7 @@ import javax.xml.bind.annotation.XmlTransient;
 import myhealthylife.dataservice.model.CurrentHealth;
 import myhealthylife.dataservice.model.MeasureTypes;
 import myhealthylife.dataservice.model.dao.DataServiceDao;
+import myhealthylife.dataservice.model.util.Utilities;
 
 @Entity
 @Table(name="healthprofile")
@@ -43,8 +44,17 @@ public class HealthProfile implements Serializable {
 	private CurrentHealth currentHealth;
 	
 	
-	//@Transient
-	//private List<MeasureType> measureType;
+	public void addMeasure(Measure m){
+		if(this.getMeasureList()==null){
+			this.setMeasureList(new ArrayList<>());
+		}
+		
+		if(m.getDateRegistered()==null){
+			m.setDateRegistered(Utilities.getCurrentDate());
+		}
+		
+		this.getMeasureList().add(m);
+	}
 
 	@XmlTransient
 	public long getIdHealthProfile() {

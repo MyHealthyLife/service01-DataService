@@ -7,8 +7,10 @@ import java.util.UUID;
 import javax.xml.namespace.QName;
 import javax.xml.ws.Service;
 
+import myhealthylife.dataservice.model.MeasureTypes;
 import myhealthylife.dataservice.model.People;
 import myhealthylife.dataservice.model.entities.HealthProfile;
+import myhealthylife.dataservice.model.entities.Measure;
 import myhealthylife.dataservice.model.entities.Person;
 import myhealthylife.dataservice.soap.DataService;
 import myhealthylife.dataservice.soap.DataServiceImpl;
@@ -31,6 +33,16 @@ public class TestClient {
 	        
 	        p1=ds.register(p1);
 	        
-	        System.out.println(p1.getIdPerson());
+	        System.out.println("personid: "+p1.getIdPerson());
+	        
+	        Measure m=new Measure();
+	        m.setMeasureType(MeasureTypes.steps.toString());
+	        m.setMeasureValue(150);
+	        
+	        m=ds.saveMeasure(p1.getIdPerson(), m);
+	        System.out.println("measure id: "+m.getMid());
+	        System.out.println("measure date: "+m.getDateRegistered());
+	        
+	        System.out.println(ds.getCurrentHealth(p1.getIdPerson()).getMeasure().size());
 	    }
 }

@@ -57,7 +57,7 @@ public interface DataService {
 	
 	@WebMethod(operationName="getCurrentHealth")
 	@WebResult(name="currentHealth")
-	public CurrentHealth getCurrentHealth(long id);
+	public CurrentHealth getCurrentHealth(long idPerson);
 	
 	@WebMethod(operationName="saveMeasure")
 	@WebResult(name="measure")
