@@ -101,6 +101,22 @@ public class Measure implements Comparable<Measure>{
 			return 1;
 		return -1;
 	}
+	
+	public static void removeMeasure(long mid){
+		Measure m=getMeasureById(mid);
+    	
+    	if(m==null)
+    		return;
+    	
+        EntityManager em = DataServiceDao.instance.createEntityManager();
+        EntityTransaction tx = em.getTransaction();
+        tx.begin();
+        m=em.merge(m);
+        em.remove(m);
+        tx.commit();
+        DataServiceDao.instance.closeConnections(em);
+    
+	}
 
 	
 }

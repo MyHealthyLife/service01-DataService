@@ -1,5 +1,7 @@
 package myhealthylife.dataservice.soap;
 
+import java.util.Iterator;
+
 import javax.jws.WebService;
 
 import myhealthylife.dataservice.model.CurrentHealth;
@@ -102,9 +104,27 @@ public class DataServiceImpl implements DataService{
 	}
 
 	@Override
-	public long deleteMeasure(long mid) {
-		// TODO Auto-generated method stub
-		return 0;
+	public long deleteMeasure(long idPerson, long mid) {
+		//Measure.removeMeasure(mid);
+		Person p=Person.getPersonById(idPerson);
+		
+		if(p==null)
+			return 0;
+		if(p.getHealthProfile()==null)
+			return 0;
+		if(p.getHealthProfile().getMeasureList()==null)
+			return 0;
+		
+		Iterator<Measure> it=p.getHealthProfile().getMeasureList().iterator();
+		while(it.hasNext()){
+			Measure m=it.next();
+			if(m.getMid()==mid){
+				p.getHealthProfile().getMeasureList().remove(m);
+				break;
+			}
+		}
+		Person.updatePerson(p);
+		return mid;
 	}
 
 }

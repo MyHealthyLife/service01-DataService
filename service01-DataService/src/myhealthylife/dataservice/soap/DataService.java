@@ -73,6 +73,6 @@ public interface DataService {
 	
 	@WebMethod(operationName="deleteMeasure")
 	@WebResult(name="mid")
-	public long deleteMeasure(long mid);
+	public long deleteMeasure(long personId, long mid);
 	
 }

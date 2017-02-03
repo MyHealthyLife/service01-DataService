@@ -46,7 +46,7 @@ public class HealthProfile implements Serializable {
 	
 	public void addMeasure(Measure m){
 		if(this.getMeasureList()==null){
-			this.setMeasureList(new ArrayList<>());
+			this.setMeasureList(new ArrayList<Measure>());
 		}
 		
 		if(m.getDateRegistered()==null){

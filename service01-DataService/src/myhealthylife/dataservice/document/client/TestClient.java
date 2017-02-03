@@ -49,6 +49,10 @@ public class TestClient {
 	        
 	        m=ds.updateMeasure(m);
 	        
-	        System.out.println("updated steps: "+m.getMeasureValue());
+	        System.out.println("updated steps: "+m.getMeasureValue()+" id: "+m.getMid());
+	        
+	        System.out.println(ds.deleteMeasure(p1.getIdPerson(),m.getMid()));
+	        
+	        //ds.deletePerson(p1.getIdPerson());
 	    }
 }
