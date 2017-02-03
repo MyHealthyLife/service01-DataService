@@ -44,5 +44,11 @@ public class TestClient {
 	        System.out.println("measure date: "+m.getDateRegistered());
 	        
 	        System.out.println(ds.getCurrentHealth(p1.getIdPerson()).getMeasure().size());
+	        
+	        m.setMeasureValue(12);
+	        
+	        m=ds.updateMeasure(m);
+	        
+	        System.out.println("updated steps: "+m.getMeasureValue());
 	    }
 }

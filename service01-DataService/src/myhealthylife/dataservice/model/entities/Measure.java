@@ -12,6 +12,7 @@ import myhealthylife.dataservice.model.dao.DataServiceDao;
 
 @Entity
 @Table(name="measure")
+@NamedQuery(name="Measure.findAll", query="SELECT m FROM Measure m")
 public class Measure implements Comparable<Measure>{
 	
 	@Id // defines this attributed as the one that identifies the entity
@@ -29,7 +30,6 @@ public class Measure implements Comparable<Measure>{
     @Column(name="created")
     private Date dateRegistered;
 	
-	private String measureValueType;
 	
 	@ManyToOne(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
 	@XmlTransient
@@ -87,20 +87,13 @@ public class Measure implements Comparable<Measure>{
         return m;
 	}
 	
-	public static Measure getMeasureById(int mid){
+	public static Measure getMeasureById(long mid){
 		EntityManager em = DataServiceDao.instance.createEntityManager();
 		Measure m=em.find(Measure.class, mid);
 		DataServiceDao.instance.closeConnections(em);
 		return m;	
 	}
 
-	public String getMeasureValueType() {
-		return measureValueType;
-	}
-
-	public void setMeasureValueType(String measureValueType) {
-		this.measureValueType = measureValueType;
-	}
 
 	@Override
 	public int compareTo(Measure o) {
@@ -109,5 +102,5 @@ public class Measure implements Comparable<Measure>{
 		return -1;
 	}
 
-
+	
 }

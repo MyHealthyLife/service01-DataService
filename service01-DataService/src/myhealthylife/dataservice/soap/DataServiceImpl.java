@@ -87,14 +87,18 @@ public class DataServiceImpl implements DataService{
 
 	@Override
 	public Measure getMeasure(long mid) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return Measure.getMeasureById(mid);
 	}
 
 	@Override
 	public Measure updateMeasure(Measure m) {
-		// TODO Auto-generated method stub
-		return null;
+		Measure stored=Measure.getMeasureById(m.getMid());
+		stored.setDateRegistered(m.getDateRegistered());
+		stored.setMeasureType(m.getMeasureType());
+		stored.setMeasureValue(m.getMeasureValue());
+		
+		return Measure.updateMeasure(stored);
 	}
 
 	@Override
