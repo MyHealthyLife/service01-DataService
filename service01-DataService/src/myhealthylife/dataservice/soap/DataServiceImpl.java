@@ -2,7 +2,9 @@ package myhealthylife.dataservice.soap;
 
 import javax.jws.WebService;
 
+import myhealthylife.dataservice.model.CurrentHealth;
 import myhealthylife.dataservice.model.People;
+import myhealthylife.dataservice.model.entities.Measure;
 import myhealthylife.dataservice.model.entities.Person;
 
 @WebService(endpointInterface="myhealthylife.dataservice.soap.DataService",
@@ -48,6 +50,36 @@ public class DataServiceImpl implements DataService{
 	public long deletePerson(long id) {
 		Person.removePerson(id);
 		return id;
+	}
+
+	@Override
+	public CurrentHealth getCurrentHealth(long id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Measure saveMeasure(long idPerson, Measure measure) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Measure getMeasure(long mid) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Measure updateMeasure(Measure m) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public long deleteMeasure(long mid) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 }
