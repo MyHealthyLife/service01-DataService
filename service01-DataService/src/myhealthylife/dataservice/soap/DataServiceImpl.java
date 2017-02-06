@@ -3,6 +3,7 @@ package myhealthylife.dataservice.soap;
 import java.util.Iterator;
 
 import javax.jws.WebService;
+import javax.persistence.EntityManager;
 
 import myhealthylife.dataservice.model.CurrentHealth;
 import myhealthylife.dataservice.model.People;
@@ -125,6 +126,18 @@ public class DataServiceImpl implements DataService{
 		}
 		Person.updatePerson(p);
 		return mid;
+	}
+
+	@Override
+	public Person getPersonByUsername(String username) {
+		
+		return Person.getPersonByUsername(username);
+	}
+
+	@Override
+	public Person getPersonByTelegramUsername(String username) {
+		
+		return Person.getPersonByTelegramUsername(username);
 	}
 
 }

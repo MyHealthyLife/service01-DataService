@@ -55,6 +55,26 @@ public interface DataService {
 	 */
 	public long deletePerson(long id);
 	
+	@WebMethod(operationName="getPersonByUsername")
+	@WebResult(name="person")
+	/**
+	 * This method returns a person filtered by the username.
+	 * the username is unique in db
+	 * @param username
+	 * @return
+	 */
+	public Person getPersonByUsername(String username);
+	
+	@WebMethod(operationName="getPersonByTelegramUsername")
+	@WebResult(name="person")
+	/**
+	 * This method returns a person filtered by the telegram username.
+	 * the telegram username is unique in db
+	 * @param username
+	 * @return
+	 */
+	public Person getPersonByTelegramUsername(String username);
+	
 	@WebMethod(operationName="getCurrentHealth")
 	@WebResult(name="currentHealth")
 	/**

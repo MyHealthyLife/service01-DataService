@@ -19,6 +19,7 @@ import javax.persistence.Table;
 import javax.persistence.TableGenerator;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.TypedQuery;
 import javax.xml.bind.annotation.XmlRootElement;
 
 import myhealthylife.dataservice.model.dao.DataServiceDao;
@@ -141,6 +142,38 @@ public class Person implements Serializable{
         em.remove(p);
         tx.commit();
         DataServiceDao.instance.closeConnections(em);
+    }
+    
+    public static Person getPersonByUsername(String username){
+    	EntityManager em = DataServiceDao.instance.createEntityManager();
+    	TypedQuery<Person> query=em.createQuery("SELECT p FROM Person p WHERE p.username=?1",Person.class);
+    	query.setParameter(1, username);
+    	
+    	List<Person> list=query.getResultList();
+    	DataServiceDao.instance.closeConnections(em);
+    	
+    	if(list==null)
+    		return null;
+    	if(list.size()==0)
+    		return null;
+    	
+    	return list.get(0);
+    }
+    
+    public static Person getPersonByTelegramUsername(String username){
+    	EntityManager em = DataServiceDao.instance.createEntityManager();
+    	TypedQuery<Person> query=em.createQuery("SELECT p FROM Person p WHERE p.telegramUsername=?1",Person.class);
+    	query.setParameter(1, username);
+    	
+    	List<Person> list=query.getResultList();
+    	DataServiceDao.instance.closeConnections(em);
+    	
+    	if(list==null)
+    		return null;
+    	if(list.size()==0)
+    		return null;
+    	
+    	return list.get(0);
     }
 
 	public String getUsername() {
