@@ -57,22 +57,49 @@ public interface DataService {
 	
 	@WebMethod(operationName="getCurrentHealth")
 	@WebResult(name="currentHealth")
+	/**
+	 * This method returns the current health profile of a person.
+	 * @param idPerson the id of the person
+	 * @return
+	 */
 	public CurrentHealth getCurrentHealth(long idPerson);
 	
 	@WebMethod(operationName="saveMeasure")
 	@WebResult(name="measure")
+	/**
+	 * Save a new measure on a health profile of a person
+	 * @param idPerson the id of the person on which the measure is correlated.
+	 * @param measure the measure which will be saved
+	 * @return
+	 */
 	public Measure saveMeasure(long idPerson, Measure measure);
 	
 	@WebMethod(operationName="getMeasure")
 	@WebResult(name="measure")
+	/**
+	 * This method return a Measure object filtered by ID.
+	 * @param mid the id of the measure
+	 * @return
+	 */
 	public Measure getMeasure(long mid);
 	
 	@WebMethod(operationName="updateMeasure")
 	@WebResult(name="measure")
+	/**
+	 * This method updates an already existing measure
+	 * @param m measure to update
+	 * @return
+	 */
 	public Measure updateMeasure(Measure m);
 	
 	@WebMethod(operationName="deleteMeasure")
 	@WebResult(name="mid")
+	/**
+	 * This method deletes a measure from the database
+	 * @param personId the id of the person which owns the measure.
+	 * @param mid the id of the measure to delete.
+	 * @return
+	 */
 	public long deleteMeasure(long personId, long mid);
 	
 }
