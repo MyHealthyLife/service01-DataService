@@ -49,13 +49,13 @@ public class Person implements Serializable{
     @Column(name="birthdate")
 	private Date birthdate;
 	
-	@Column(name="username")
+	@Column(name="username",unique=true)
 	private String username;
 	
 	@Column(name="password")
 	private String password;
 	
-	@Column(name="telegram_username")
+	@Column(name="telegram_username",unique=true)
 	private String telegramUsername;
 	
 	@OneToOne(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
