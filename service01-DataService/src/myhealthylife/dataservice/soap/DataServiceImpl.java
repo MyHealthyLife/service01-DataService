@@ -3,9 +3,9 @@ package myhealthylife.dataservice.soap;
 import java.util.Iterator;
 
 import javax.jws.WebService;
-import javax.persistence.EntityManager;
 
 import myhealthylife.dataservice.model.CurrentHealth;
+import myhealthylife.dataservice.model.MeasureHistory;
 import myhealthylife.dataservice.model.People;
 import myhealthylife.dataservice.model.entities.HealthProfile;
 import myhealthylife.dataservice.model.entities.Measure;
@@ -138,6 +138,22 @@ public class DataServiceImpl implements DataService{
 	public Person getPersonByTelegramUsername(String username) {
 		
 		return Person.getPersonByTelegramUsername(username);
+	}
+
+	@Override
+	public MeasureHistory getMeasureHistory(long personId) {
+		MeasureHistory mh=new MeasureHistory();
+		Person p=Person.getPersonById(personId);
+		
+		if(p==null)
+			return null;
+		
+		if(p.getHealthProfile()==null)
+			return null;
+		
+		mh.setMeasures(p.getHealthProfile().getMeasureList());
+		
+		return mh;
 	}
 
 }

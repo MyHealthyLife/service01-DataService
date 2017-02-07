@@ -9,6 +9,7 @@ import javax.jws.soap.SOAPBinding.Use;
 
 import myhealthylife.dataservice.model.entities.*;
 import myhealthylife.dataservice.model.CurrentHealth;
+import myhealthylife.dataservice.model.MeasureHistory;
 import myhealthylife.dataservice.model.People;
 
 @WebService
@@ -102,6 +103,16 @@ public interface DataService {
 	 * @return
 	 */
 	public Measure getMeasure(long mid);
+	
+	@WebMethod(operationName="getMeasureHistory")
+	@WebResult(name="measureHistory")
+	/**
+	 * This method returns a least of Measure which represent
+	 *  the whole measure history of a person.
+	 * @param personId the id of the person
+	 * @return
+	 */
+	public MeasureHistory getMeasureHistory(long personId);
 	
 	@WebMethod(operationName="updateMeasure")
 	@WebResult(name="measure")
