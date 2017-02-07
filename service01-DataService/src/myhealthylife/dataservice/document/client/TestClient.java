@@ -37,7 +37,7 @@ public class TestClient {
 	        
 	        Measure m=new Measure();
 	        m.setMeasureType(MeasureTypes.steps.toString());
-	        m.setMeasureValue(150);
+	        m.setMeasureValue(new Double(150));
 	        
 	        m=ds.saveMeasure(p1.getIdPerson(), m);
 	        System.out.println("measure id: "+m.getMid());
@@ -45,7 +45,7 @@ public class TestClient {
 	        
 	        System.out.println(ds.getCurrentHealth(p1.getIdPerson()).getMeasure().size());
 	        
-	        m.setMeasureValue(12);
+	        m.setMeasureValue(new Double(12));
 	        
 	        m=ds.updateMeasure(m);
 	        

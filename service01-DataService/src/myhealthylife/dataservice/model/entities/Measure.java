@@ -21,7 +21,7 @@ public class Measure implements Comparable<Measure>{
     private long mid;
 	
 	@Column(name="value")
-	private double measureValue;
+	private Double measureValue;
 	
 	@Column(name="TYPE")
 	private String measureType;
@@ -43,11 +43,11 @@ public class Measure implements Comparable<Measure>{
 		this.mid = mid;
 	}
 
-	public double getMeasureValue() {
+	public Double getMeasureValue() {
 		return measureValue;
 	}
 
-	public void setMeasureValue(double value) {
+	public void setMeasureValue(Double value) {
 		this.measureValue = value;
 	}
 
