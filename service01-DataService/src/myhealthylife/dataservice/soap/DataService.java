@@ -10,6 +10,7 @@ import javax.jws.soap.SOAPBinding.Use;
 import myhealthylife.dataservice.model.entities.*;
 import myhealthylife.dataservice.model.CurrentHealth;
 import myhealthylife.dataservice.model.MeasureHistory;
+import myhealthylife.dataservice.model.MeasureTypeList;
 import myhealthylife.dataservice.model.People;
 
 @WebService
@@ -132,5 +133,13 @@ public interface DataService {
 	 * @return
 	 */
 	public long deleteMeasure(long personId, long mid);
+	
+	@WebMethod(operationName="getMeasureTypes")
+	@WebResult(name="measureTypes")
+	/**
+	 * this method return all the measure type available
+	 * @return
+	 */
+	public MeasureTypeList getMeasureTypesList();
 	
 }

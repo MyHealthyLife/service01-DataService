@@ -1,11 +1,17 @@
 package myhealthylife.dataservice.soap;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Iterator;
 
 import javax.jws.WebService;
 
+import org.apache.commons.lang3.EnumUtils;
+
 import myhealthylife.dataservice.model.CurrentHealth;
 import myhealthylife.dataservice.model.MeasureHistory;
+import myhealthylife.dataservice.model.MeasureTypeList;
+import myhealthylife.dataservice.model.MeasureTypes;
 import myhealthylife.dataservice.model.People;
 import myhealthylife.dataservice.model.entities.HealthProfile;
 import myhealthylife.dataservice.model.entities.Measure;
@@ -80,6 +86,10 @@ public class DataServiceImpl implements DataService{
 			p.setHealthProfile(new HealthProfile());
 		}
 		
+		/*check if the measure type is valid*/
+		if(!EnumUtils.isValidEnum(MeasureTypes.class, measure.getMeasureType()))
+			return null;
+		
 		p.getHealthProfile().addMeasure(measure);
 		
 		p=Person.updatePerson(p);
@@ -100,6 +110,11 @@ public class DataServiceImpl implements DataService{
 		stored.setDateRegistered(m.getDateRegistered());
 		stored.setMeasureType(m.getMeasureType());
 		stored.setMeasureValue(m.getMeasureValue());
+		
+		
+		/*check if the measure type is valid*/
+		if(!EnumUtils.isValidEnum(MeasureTypes.class, stored.getMeasureType()))
+			return null;
 		
 		return Measure.updateMeasure(stored);
 	}
@@ -154,6 +169,12 @@ public class DataServiceImpl implements DataService{
 		mh.setMeasures(p.getHealthProfile().getMeasureList());
 		
 		return mh;
+	}
+
+	@Override
+	public MeasureTypeList getMeasureTypesList() {
+		
+		return new MeasureTypeList();
 	}
 
 }
