@@ -31,7 +31,7 @@ public class Measure implements Comparable<Measure>{
     private Date dateRegistered;
 	
 	
-	@ManyToOne(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+	@ManyToOne(cascade=CascadeType.PERSIST, fetch=FetchType.EAGER)
 	@XmlTransient
 	private HealthProfile  healthProfile;
 

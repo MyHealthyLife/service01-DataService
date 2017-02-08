@@ -31,12 +31,13 @@ public class HealthProfile implements Serializable {
 	@XmlTransient
     private long idHealthProfile;
 	
-	@OneToOne(mappedBy="healthProfile", cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+	@OneToOne(mappedBy="healthProfile", cascade=CascadeType.PERSIST, fetch=FetchType.EAGER)
 	@XmlTransient
 	private Person person;
 	
-	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+	@OneToMany(cascade=CascadeType.PERSIST, fetch=FetchType.EAGER)
 	@XmlTransient
+	@OrderBy("dateRegistered DESC")
 	private List<Measure> measureList;
 	
 	/*the current health profile is not saved in the database, is generated on-demand using the measure history*/

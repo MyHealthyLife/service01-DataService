@@ -46,6 +46,9 @@ public class Person implements Serializable{
 	@Column(name="lastname")
 	private String lastname;
 	
+	@Column(name="sex")
+	private String sex;
+	
 	@Temporal(TemporalType.DATE) // defines the precision of the date attribute
     @Column(name="birthdate")
 	private Date birthdate;
@@ -206,5 +209,13 @@ public class Person implements Serializable{
 
 	public void setHealthProfile(HealthProfile healthProfile) {
 		this.healthProfile = healthProfile;
+	}
+
+	public String getSex() {
+		return sex;
+	}
+
+	public void setSex(String sex) {
+		this.sex = sex;
 	}
 }
