@@ -177,4 +177,10 @@ public class DataServiceImpl implements DataService{
 		return new MeasureTypeList();
 	}
 
+	@Override
+	public Person getPersonByTelegramID(String telegramId) {
+		
+		return Person.getPersonByTelegramID(telegramId);
+	}
+
 }

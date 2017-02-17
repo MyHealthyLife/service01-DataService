@@ -64,6 +64,9 @@ public class Person implements Serializable{
 	
 	@OneToOne(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
 	private HealthProfile healthProfile;
+	
+	@Column(name="telgram_id",unique=true)
+	private String telegramID;
 
 	public long getIdPerson() {
 		return idPerson;
@@ -178,6 +181,22 @@ public class Person implements Serializable{
     	
     	return list.get(0);
     }
+    
+    public static Person getPersonByTelegramID(String telegramID){
+    	EntityManager em = DataServiceDao.instance.createEntityManager();
+    	TypedQuery<Person> query=em.createQuery("SELECT p FROM Person p WHERE p.telegramID=?1",Person.class);
+    	query.setParameter(1, telegramID);
+    	
+    	List<Person> list=query.getResultList();
+    	DataServiceDao.instance.closeConnections(em);
+    	
+    	if(list==null)
+    		return null;
+    	if(list.size()==0)
+    		return null;
+    	
+    	return list.get(0);
+    }
 
 	public String getUsername() {
 		return username;
@@ -217,5 +236,13 @@ public class Person implements Serializable{
 
 	public void setSex(String sex) {
 		this.sex = sex;
+	}
+
+	public String getTelegramID() {
+		return telegramID;
+	}
+
+	public void setTelegramID(String telegramID) {
+		this.telegramID = telegramID;
 	}
 }

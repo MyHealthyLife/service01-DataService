@@ -77,6 +77,15 @@ public interface DataService {
 	 */
 	public Person getPersonByTelegramUsername(String username);
 	
+	@WebMethod(operationName="getPersonByTelegramId")
+	@WebResult(name="person")
+	/**
+	 * this method return a person filtered by the telegram id.
+	 * @param telegramId
+	 * @return
+	 */
+	public Person getPersonByTelegramID(String telegramId);
+	
 	@WebMethod(operationName="getCurrentHealth")
 	@WebResult(name="currentHealth")
 	/**
