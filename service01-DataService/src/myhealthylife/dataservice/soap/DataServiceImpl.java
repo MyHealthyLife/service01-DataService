@@ -46,12 +46,20 @@ public class DataServiceImpl implements DataService{
 		if (pStored==null)
 			return null;
 		
-		pStored.setBirthdate(p.getBirthdate());
-		pStored.setFirstname(p.getFirstname());
-		pStored.setLastname(p.getLastname());
-		pStored.setPassword(p.getPassword());
-		pStored.setTelegramUsername(p.getTelegramUsername());//TODO memorizzrlo nel tier superiore
-		pStored.setUsername(p.getUsername());
+		if(p.getBirthdate()!=null)
+			pStored.setBirthdate(p.getBirthdate());
+		if(p.getFirstname()!=null)
+			pStored.setFirstname(p.getFirstname());
+		if(p.getLastname()!=null)
+			pStored.setLastname(p.getLastname());
+		if(p.getPassword()!=null)
+			pStored.setPassword(p.getPassword());
+		if(p.getTelegramUsername()!=null)
+			pStored.setTelegramUsername(p.getTelegramUsername());
+		if(p.getUsername()!=null)
+			pStored.setUsername(p.getUsername());
+		if(p.getTelegramID()!=null)
+			pStored.setTelegramID(p.getTelegramID());
 		
 		return Person.updatePerson(pStored);
 	}
