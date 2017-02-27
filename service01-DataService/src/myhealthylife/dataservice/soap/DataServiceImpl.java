@@ -60,6 +60,8 @@ public class DataServiceImpl implements DataService{
 			pStored.setUsername(p.getUsername());
 		if(p.getTelegramID()!=null)
 			pStored.setTelegramID(p.getTelegramID());
+		if(p.getSex()!=null)
+			pStored.setSex(p.getSex());
 		
 		return Person.updatePerson(pStored);
 	}
