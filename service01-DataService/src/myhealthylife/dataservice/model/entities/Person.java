@@ -67,6 +67,12 @@ public class Person implements Serializable{
 	
 	@Column(name="telgram_id",unique=true)
 	private String telegramID;
+	
+	/**
+	 * the telegram username is public and visible
+	 */
+	@Column(name="username_visible")
+	private Boolean usernameVisible;
 
 	public long getIdPerson() {
 		return idPerson;
@@ -244,5 +250,13 @@ public class Person implements Serializable{
 
 	public void setTelegramID(String telegramID) {
 		this.telegramID = telegramID;
+	}
+
+	public Boolean getUsernameVisible() {
+		return usernameVisible;
+	}
+
+	public void setUsernameVisible(Boolean usernameVisible) {
+		this.usernameVisible = usernameVisible;
 	}
 }
