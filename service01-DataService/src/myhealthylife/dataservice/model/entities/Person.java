@@ -68,6 +68,12 @@ public class Person implements Serializable{
 	@Column(name="telgram_id",unique=true)
 	private String telegramID;
 	
+	@Column(name="country")
+	private String country;
+	
+	@Column(name="city")
+	private String city;
+	
 	/**
 	 * the telegram username is public and visible
 	 */
@@ -258,5 +264,21 @@ public class Person implements Serializable{
 
 	public void setUsernameVisible(Boolean usernameVisible) {
 		this.usernameVisible = usernameVisible;
+	}
+
+	public String getCountry() {
+		return country;
+	}
+
+	public void setCountry(String country) {
+		this.country = country;
+	}
+
+	public String getCity() {
+		return city;
+	}
+
+	public void setCity(String city) {
+		this.city = city;
 	}
 }
