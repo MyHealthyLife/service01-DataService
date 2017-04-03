@@ -8,7 +8,7 @@ import javax.jws.soap.SOAPBinding.Style;
 import javax.jws.soap.SOAPBinding.Use;
 
 import myhealthylife.dataservice.model.entities.*;
-import myhealthylife.dataservice.model.generated.weather.CurrentType;
+import myhealthylife.dataservice.model.generated.weather.Current;
 import myhealthylife.dataservice.model.generated.weather.WeatherType;
 import myhealthylife.dataservice.model.CurrentHealth;
 import myhealthylife.dataservice.model.MeasureHistory;
@@ -160,5 +160,5 @@ public interface DataService {
 	 * @param personId
 	 * @return
 	 */
-	public CurrentType getWeather(long personId);
+	public Current getWeather(long personId);
 }

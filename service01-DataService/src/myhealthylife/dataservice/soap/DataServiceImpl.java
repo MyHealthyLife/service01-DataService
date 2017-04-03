@@ -15,7 +15,7 @@ import myhealthylife.dataservice.model.People;
 import myhealthylife.dataservice.model.entities.HealthProfile;
 import myhealthylife.dataservice.model.entities.Measure;
 import myhealthylife.dataservice.model.entities.Person;
-import myhealthylife.dataservice.model.generated.weather.CurrentType;
+import myhealthylife.dataservice.model.generated.weather.Current;
 import myhealthylife.dataservice.model.generated.weather.WeatherType;
 import myhealthylife.dataservice.model.util.ServicesLocator;
 
@@ -206,7 +206,7 @@ public class DataServiceImpl implements DataService{
 	}
 
 	@Override
-	public CurrentType getWeather(long personId) {
+	public Current getWeather(long personId) {
 		Person p=Person.getPersonById(personId);
 		
 		/*if the person do not exists return null*/
@@ -230,7 +230,7 @@ public class DataServiceImpl implements DataService{
 		
 		
 		
-		return weatherResponse.readEntity(CurrentType.class);
+		return weatherResponse.readEntity(Current.class);
 	}
 
 }
