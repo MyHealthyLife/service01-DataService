@@ -151,4 +151,7 @@ public interface DataService {
 	 */
 	public MeasureTypeList getMeasureTypesList();
 	
+	//@WebMethod(operationName="getWeatherForecast")
+	//@WebResult(name="weatherForecast")
+	
 }
