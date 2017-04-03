@@ -8,6 +8,8 @@ import javax.jws.soap.SOAPBinding.Style;
 import javax.jws.soap.SOAPBinding.Use;
 
 import myhealthylife.dataservice.model.entities.*;
+import myhealthylife.dataservice.model.generated.weather.CurrentType;
+import myhealthylife.dataservice.model.generated.weather.WeatherType;
 import myhealthylife.dataservice.model.CurrentHealth;
 import myhealthylife.dataservice.model.MeasureHistory;
 import myhealthylife.dataservice.model.MeasureTypeList;
@@ -151,7 +153,12 @@ public interface DataService {
 	 */
 	public MeasureTypeList getMeasureTypesList();
 	
-	//@WebMethod(operationName="getWeatherForecast")
-	//@WebResult(name="weatherForecast")
-	
+	@WebMethod(operationName="getWeatherForecast")
+	@WebResult(name="weatherForecast")
+	/**
+	 * return the weather for the city of the person
+	 * @param personId
+	 * @return
+	 */
+	public CurrentType getWeather(long personId);
 }

@@ -1,10 +1,9 @@
 package myhealthylife.dataservice.soap;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Iterator;
 
 import javax.jws.WebService;
+import javax.ws.rs.core.Response;
 
 import org.apache.commons.lang3.EnumUtils;
 
@@ -16,6 +15,9 @@ import myhealthylife.dataservice.model.People;
 import myhealthylife.dataservice.model.entities.HealthProfile;
 import myhealthylife.dataservice.model.entities.Measure;
 import myhealthylife.dataservice.model.entities.Person;
+import myhealthylife.dataservice.model.generated.weather.CurrentType;
+import myhealthylife.dataservice.model.generated.weather.WeatherType;
+import myhealthylife.dataservice.model.util.ServicesLocator;
 
 @WebService(endpointInterface="myhealthylife.dataservice.soap.DataService",
 	serviceName="DataService")
@@ -65,6 +67,13 @@ public class DataServiceImpl implements DataService{
 		if(p.getUsernameVisible()!=null){
 			pStored.setUsernameVisible(p.getUsernameVisible());
 		}
+		
+		if(p.getCity()!=null){
+			pStored.setCity(p.getCity());
+		}
+		
+		if(p.getCountry()!=null)
+			pStored.setCountry(p.getCountry());
 		
 		return Person.updatePerson(pStored);
 	}
@@ -194,6 +203,34 @@ public class DataServiceImpl implements DataService{
 	public Person getPersonByTelegramID(String telegramId) {
 		
 		return Person.getPersonByTelegramID(telegramId);
+	}
+
+	@Override
+	public CurrentType getWeather(long personId) {
+		Person p=Person.getPersonById(personId);
+		
+		/*if the person do not exists return null*/
+		if(p==null)
+			return null;
+		
+		/*if the person do not save saved her city and her country do not return any weather info*/
+		if(p.getCity()==null || p.getCountry()==null)
+			return null;
+		
+		Response weatherResponse=ServicesLocator.getWeatherService().path("data/2.5/weather")
+				.queryParam("q",p.getCity()+","+p.getCountry()).queryParam("APPID","b6c89eb6cfe1da518c6fadab78cce896")
+				.queryParam("mode","xml")
+				.queryParam("units", "metric")
+				.request()
+				.get();
+		
+		if(weatherResponse.getStatus()!= Response.Status.OK.getStatusCode())
+			return null;
+		
+		
+		
+		
+		return weatherResponse.readEntity(CurrentType.class);
 	}
 
 }
