@@ -26,7 +26,7 @@ public class DataServiceImpl implements DataService{
 	@Override
 	public People getPeople() {
 		People p=new People();
-		p.setPerson(Person.getAll());
+		p.setPerson(Person.getAll()); //get all person from the DB
 		return p;
 	}
 
@@ -45,9 +45,11 @@ public class DataServiceImpl implements DataService{
 	public Person updatePerson(Person p) {
 		Person pStored=Person.getPersonById(p.getIdPerson());
 		
+		/*if the person do not exits return null*/
 		if (pStored==null)
 			return null;
 		
+		/*update the data of stored person with the data of the updated person*/
 		if(p.getBirthdate()!=null)
 			pStored.setBirthdate(p.getBirthdate());
 		if(p.getFirstname()!=null)
@@ -101,6 +103,7 @@ public class DataServiceImpl implements DataService{
 	public Measure saveMeasure(long idPerson, Measure measure) {
 		Person p=Person.getPersonById(idPerson);
 		
+		/*if the person do not exits return null*/
 		if(p==null)
 			return null;
 		
@@ -182,9 +185,11 @@ public class DataServiceImpl implements DataService{
 		MeasureHistory mh=new MeasureHistory();
 		Person p=Person.getPersonById(personId);
 		
+		/*if the person do not exits return null*/
 		if(p==null)
 			return null;
 		
+		/*if the person does not have a healthprofile return null */
 		if(p.getHealthProfile()==null)
 			return null;
 		
@@ -217,6 +222,7 @@ public class DataServiceImpl implements DataService{
 		if(p.getCity()==null || p.getCountry()==null)
 			return null;
 		
+		/*get the information from the external REST service*/
 		Response weatherResponse=ServicesLocator.getWeatherService().path("data/2.5/weather")
 				.queryParam("q",p.getCity()+","+p.getCountry()).queryParam("APPID","b6c89eb6cfe1da518c6fadab78cce896")
 				.queryParam("mode","xml")
